@@ -1,0 +1,365 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{% static 'images/logo_5212.png' %}"
+    />
+    <title>LearnUp</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  </head>
+  <body>
+    <!-- ===== Header ===== -->
+    <header class="header">
+  <div class="logo">
+    <img src="{% static 'images/logo_5212.png' %}" alt="شعار الموقع" />
+  </div>
+
+  <nav class="navbar">
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#Courses">Courses</a></li>
+      <li><a href="#stats">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+
+      {% if user.is_authenticated %}
+        <li id="my-account-li">
+          <a href="{% url 'all_courses' %}">All Courses</a>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+
+  {% if user.is_authenticated %}
+    <button id="logout-btn" class="cta-btn" data-logout-url="{% url 'logout' %}">
+      <span>Log Out</span>
+    </button>
+  {% endif %}
+
+  <a href="{% url 'register' %}" class="cta-btn {% if user.is_authenticated %}hidden{% endif %}" id="signup-btn">
+    <span>Sign Up Now</span>
+  </a>
+
+  <div class="menu-toggle" id="menu-toggle">&#9776;</div>
+</header>
+
+    <!-- ===== Hero Section ===== -->
+    <section class="hero">
+      <div class="hero-text">
+        <h1>
+          Best online platform <br />
+          for education.
+        </h1>
+        <p>
+          Join us to explore a world of knowledge and skills.<br />
+          Learn from top tutors, access hundreds of courses,<br />
+          and improve your career prospects.<br />
+          Start your learning journey today and unlock your full potential!
+        </p>
+      </div>
+      <div class="hero-image">
+        <img src="{% static 'images/hero.png' %}" alt="Hero Image" />
+      </div>
+    </section>
+
+    <!-- ===== Stats Section ===== -->
+    <section class="stats" id="stats">
+      <div class="stats-container">
+        <div class="stat-card">
+          <h2>100+ 🚀</h2>
+          <p>Instructors</p>
+          <span class="underline"></span>
+        </div>
+        <div class="stat-card">
+          <h2>3000+ 🎓</h2>
+          <p>Students</p>
+          <span class="underline"></span>
+        </div>
+        <div class="stat-card">
+          <h2>780+ 📚</h2>
+          <p>Courses</p>
+          <span class="underline"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Courses Section ===== -->
+    <section class="Courses" id="Courses">
+      <h2>Popular Courses</h2>
+      <div class="Courses-container">
+        <!-- Course 1 -->
+        <div class="Courses-card">
+          <div class="card-image">
+            <img
+              src="{% static 'images/c1.jpg' %}"
+              alt="Introduction to JavaScript"
+            />
+            <div class="price">$60.00</div>
+          </div>
+          <div class="card-content">
+            <h3>Programming</h3>
+            <p>Introduction to JavaScript</p>
+            <div class="rating">⭐⭐⭐⭐⭐ (450 Reviews)</div>
+            <div class="statss">
+              <span>20 Lessons</span>
+              <span>150 Students</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course 2 -->
+        <div class="Courses-card">
+          <div class="card-image">
+            <img src="{% static 'images/c5.jpg' %}" alt="Course 2" />
+            <div class="price">$100.00</div>
+          </div>
+          <div class="card-content">
+            <h3>Web Design</h3>
+            <p>Learn HTML, CSS & JavaScript</p>
+            <div class="rating">⭐⭐⭐⭐☆ (300 Reviews)</div>
+            <div class="statss">
+              <span>15 Lessons</span>
+              <span>120 Students</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course 3 -->
+        <div class="Courses-card">
+          <div class="card-image">
+            <img src="{% static 'images/c4.jpg' %}" alt="Course 3" />
+            <div class="price">$130.00</div>
+          </div>
+          <div class="card-content">
+            <h3>Hacking</h3>
+            <p>Ethical Hacking Basics</p>
+            <div class="rating">⭐⭐⭐⭐⭐ (500 Reviews)</div>
+            <div class="statss">
+              <span>25 Lessons</span>
+              <span>200 Students</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course 4 -->
+        <div class="Courses-card">
+          <div class="card-image">
+            <img src="{% static 'images/c6.jpg' %}" alt="Course 4" />
+            <div class="price">$200.00</div>
+          </div>
+          <div class="card-content">
+            <h3>Software Development</h3>
+            <p>Software Testing and QA</p>
+            <div class="rating">⭐⭐⭐⭐☆ (350 Reviews)</div>
+            <div class="statss">
+              <span>30 Lessons</span>
+              <span>180 Students</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course 5 -->
+        <div class="Courses-card">
+          <div class="card-image">
+            <img src="{% static 'images/eeee2.jpg' %}" alt="Course 5" />
+            <div class="price">$250.00</div>
+          </div>
+          <div class="card-content">
+            <h3>Programming</h3>
+            <p>Advanced Python Programming Concepts</p>
+            <div class="rating">⭐⭐⭐⭐⭐ (400 Reviews)</div>
+            <div class="statss">
+              <span>35 Lessons</span>
+              <span>220 Students</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course 6 -->
+        <div class="Courses-card">
+          <div class="card-image">
+            <img src="{% static 'images/download.jpg' %}" alt="Course 6" />
+            <div class="price">$300.00</div>
+          </div>
+          <div class="card-content">
+            <h3>Machine Learning</h3>
+            <p>Mastering Machine Learning with Python</p>
+            <div class="rating">⭐⭐⭐⭐⭐ (500 Reviews)</div>
+            <div class="statss">
+              <span>40 Lessons</span>
+              <span>300 Students</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course 7 -->
+        <div class="Courses-card">
+          <div class="card-image">
+            <img
+              src="{% static 'images/graphic-design-1500-x-900-picture-lpuf40e9jm621ews-1500x750.jpg' %}"
+              alt="Course 7"
+            />
+            <div class="price">$350.00</div>
+          </div>
+          <div class="card-content">
+            <h3>Graphic Design</h3>
+            <p>
+              How to become a Graphic Designer? & Advanced Graphic Design
+              Techniques
+            </p>
+            <div class="rating">⭐⭐⭐⭐⭐ (600 Reviews)</div>
+            <div class="statss">
+              <span>45 Lessons</span>
+              <span>400 Students</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course 8 -->
+        <div class="Courses-card">
+          <div class="card-image">
+            <img
+              src="{% static 'images/360553064_11454732.png' %}"
+              alt="Course 8"
+            />
+            <div class="price">$400.00</div>
+          </div>
+          <div class="card-content">
+            <h3>Soft skills</h3>
+            <p>Effective Communication and Teamwork and Leadership</p>
+            <div class="rating">⭐⭐⭐⭐⭐ (700 Reviews)</div>
+            <div class="statss">
+              <span>50 Lessons</span>
+              <span>500 Students</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Feedback Section ===== -->
+    <section class="feedback" id="feedback">
+      <h2>Student Feedback</h2>
+      <div class="feedback-container">
+        <div class="feedback-card">
+          <p>
+            “This platform helped me improve my skills tremendously. Highly
+            recommended!”
+          </p>
+          <div class="student-info">
+            <img src="{% static 'images/r1.jpg' %}" alt="Student 1" />
+            <div>
+              <h4>Sarah</h4>
+              <div class="rating">⭐⭐⭐⭐⭐</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feedback-card">
+          <p>
+            “The courses are very well structured and easy to follow. Great
+            tutors!”
+          </p>
+          <div class="student-info">
+            <img
+              src="{% static 'images/288186-846285858.jpg' %}"
+              alt="Student 2"
+            />
+            <div>
+              <h4>Ahmad Ali</h4>
+              <div class="rating">⭐⭐⭐⭐⭐</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feedback-card">
+          <p>“I gained practical skills that helped me land my dream job!”</p>
+          <div class="student-info">
+            <img src="{% static 'images/r3.jpg' %}" alt="Student 3" />
+            <div>
+              <h4>Yoseef Ismail</h4>
+              <div class="rating">⭐⭐⭐⭐⭐</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feedback-card">
+          <p>“I learned so much from this platform!”</p>
+          <div class="student-info">
+            <img
+              src="{% static 'images/db5fc6f9-f519-41f1-bf76-1cbe7da42a8e-1024x1024.webp' %}"
+              alt="Student 4"
+            />
+            <div>
+              <h4>Abdullah Elshafey</h4>
+              <div class="rating">⭐⭐⭐⭐⭐</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contact Section ===== -->
+    <section class="contact" id="contact">
+      <h2>Get in Touch</h2>
+      <div class="contact-container">
+        <div class="contact-info">
+          <div class="info-card">
+            <span class="icon">📧</span>
+            <div>
+              <h4>Email Us</h4>
+              <p>contact@learnup.com</p>
+            </div>
+          </div>
+          <div class="info-card">
+            <span class="icon">📞</span>
+            <div>
+              <h4>Call Us</h4>
+              <p>+20 123 456 789</p>
+            </div>
+          </div>
+          <div class="info-card">
+            <span class="icon">📍</span>
+            <div>
+              <h4>Location</h4>
+              <p>Cairo, Egypt</p>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form">
+          <h3>Send Us a Message</h3>
+          <input type="text" placeholder="Your Name" required />
+          <input type="email" placeholder="Your Email" required />
+          <textarea placeholder="Your Message" rows="6" required></textarea>
+          <button type="submit"><span>Send Message</span></button>
+        </form>
+      </div>
+    </section>
+    
+
+    <footer>
+      <p>
+        © Copyright 2025 All rights reserved by
+        <a href="https://mohamedaymn220.github.io/Personal-Portfolio-Website/">
+          Mohamed Ayman
+        </a>
+      </p>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+  </body>
+</html>

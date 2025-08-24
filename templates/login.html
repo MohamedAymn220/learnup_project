@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+
+  
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-KyZXEAg3QhqLMpG8r+Knujsl5+5hb7ie2qF2QYp0JtF+fJ/1O/3A3oX1pK6M1z2Mf0e+9hN2xO8vY1d3P7EjPQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+
+  
+  <link rel="stylesheet" href="{% static 'css/stylelogin.css' %}">
+</head>
+
+<body>
+  <div class="container">
+    <div class="card">
+        
+      <h2>   👋🙂 Welcome Back 😇</h2>
+
+      <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        {% for field in form %}
+          <div class="form-group">
+            <label>{{ field.label }}</label>
+            {{ field }}
+            {% for error in field.errors %}
+              <p class="error">{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endfor %}
+
+        <button type="submit">Login</button>
+      </form>
+
+      <p class="register-text">
+        Don’t have an account?
+        <a href="{% url 'register' %}">Register</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

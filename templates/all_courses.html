@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>📚 جميع الكورسات</title>
+    <link rel="icon" type="image/png" href="{% static 'images/images.png' %}">
+    <link rel="stylesheet" href="{% static 'css/all_courses.css' %}" />
+  </head>
+  <body>
+    <h1 class="title">📚 جميع الكورسات</h1>
+
+    {% if user.role == "instructor" %}
+    <a href="{% url 'add_course' %}" class="btn">➕ إضافة كورس جديد</a>
+    {% endif %}
+    <a href="{% url 'index' %}" class="btn home-btn">🏠 الرجوع للرئيسية</a>
+    <div class="courses-container">
+      {% for course in courses %}
+      <div class="course-card">
+        {% if course.image %}
+        <img src="{{ course.image.url }}" alt="{{ course.title }}" />
+        {% else %}
+        <img src="{% static 'images/default-product-card.png' %}" alt="course" />
+        {% endif %}
+
+        <h2>{{ course.title }}</h2>
+        <p>{{ course.description|truncatewords:15 }}</p>
+        <span class="instructor">👨‍🏫 {{ course.created_by.username }}</span>
+        <!-- زر شاهد الآن -->
+    <div class="course-actions mt-2">
+      <a href="{% url 'view_course' course.id %}" class="btn btn-primary">
+        👀 شاهد الآن
+      </a>
+    </div>
+
+        {% if user.role == "instructor" and user == course.created_by %}
+        <div class="course-actions">
+          <a href="{% url 'edit_course' course.id %}" class="btn edit-btn"
+            >✏️ تعديل</a
+          >
+
+          <form
+            method="post"
+            action="{% url 'delete_course' course.id %}"
+            style="display: inline"
+          >
+            {% csrf_token %}
+            <button
+              type="submit"
+              class="btn delete-btn"
+              onclick="return confirm('هل أنت متأكد من حذف هذا الكورس؟')"
+            >
+              🗑️ حذف
+            </button>
+          </form>
+        </div>
+        {% endif %}
+      </div>
+      {% empty %}
+      <p>لا يوجد كورسات حالياً.</p>
+      {% endfor %}
+    </div>
+  </body>
+</html>
