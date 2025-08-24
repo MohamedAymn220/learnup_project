@@ -82,10 +82,10 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_DIRS = [BASE_DIR / 'static']  # ملفات static المحلية
+STATIC_ROOT = BASE_DIR / "staticfiles"    # مكان جمع الملفات للـ deploy
 
-# WhiteNoise for static files
+# WhiteNoise لتقديم ملفات static
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
